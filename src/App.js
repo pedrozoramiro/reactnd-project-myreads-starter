@@ -21,7 +21,6 @@ class BooksApp extends React.Component {
 
   render() {
     const { shelves, books } = this.state;
-    console.log(books);
     return (
       <div className="app">
         <div className="list-books">
@@ -37,7 +36,7 @@ class BooksApp extends React.Component {
                     shelf={shelf.name}
                     title={shelf.title}
                     books={books}
-                    actions={shelves}
+                    shelves={shelves}
                   />
                 );
               })}
