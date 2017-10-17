@@ -9,9 +9,9 @@ class BooksApp extends React.Component {
   state = {
     books: [],
     shelves: [
-      { key: "currentlyReading", title: "Currently Reading" },
-      { key: "wantToRead", title: "Want to Read" },
-      { key: "read", title: "Read" }
+      { name: "currentlyReading", title: "Currently Reading" },
+      { name: "wantToRead", title: "Want to Read" },
+      { name: "read", title: "Read" }
     ],
     showSearchPage: false
   };
@@ -21,6 +21,7 @@ class BooksApp extends React.Component {
 
   render() {
     const { shelves, books } = this.state;
+    console.log(books);
     return (
       <div className="app">
         <div className="list-books">
@@ -32,7 +33,8 @@ class BooksApp extends React.Component {
               {shelves.map(function(shelf) {
                 return (
                   <BookGrid
-                    key={shelf.key}
+                    key={shelf.name}
+                    shelf={shelf.name}
                     title={shelf.title}
                     books={books}
                     actions={shelves}

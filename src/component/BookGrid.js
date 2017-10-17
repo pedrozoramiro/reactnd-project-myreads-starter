@@ -4,14 +4,16 @@ import PropTypes from "prop-types";
 
 class BookGrid extends Component {
   render() {
-    const { title, books, actions } = this.props;
-    
+    const { title, books, actions ,shelf} = this.props;
+    //TODO: externalizar essa regra.
+    const booksFilteredByShelf = books.filter( (book) => book.shelf === shelf);
+
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{title}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {books.map(function(book) {
+            {booksFilteredByShelf.map(function(book) {
               return (
                 <li key={book.id}>
                   <div className="book">
@@ -32,7 +34,7 @@ class BookGrid extends Component {
                           </option>
                           {actions.map(function(act) {
                             return (
-                              <option key={act.key} value={act.key} >{act.title}</option>
+                              <option key={act.name} value={act.name} >{act.title}</option>
                             );
                           })}
                         </select>
@@ -52,7 +54,10 @@ class BookGrid extends Component {
 }
 
 BookGrid.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  shelf:PropTypes.string.isRequired,
+  actions:PropTypes.array.isRequired,
+  books:PropTypes.array.isRequired
 };
 
 export default BookGrid;
