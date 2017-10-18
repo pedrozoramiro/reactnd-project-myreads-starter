@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 class BookGrid extends Component {
   render() {
-    const { title, books, shelves, shelf } = this.props;
+    const { title, books, shelves, shelf, onChangeShelve} = this.props;
     //TODO: externalizar essa regra.
     const booksFilteredByShelf = books.filter(book => book.shelf === shelf);
 
@@ -18,10 +18,9 @@ class BookGrid extends Component {
               return (
                 <li key={book.id}>
                   <Book
-                    authors={book.authors}
-                    imageUrl={book.imageLinks.smallThumbnail}
+                    book={book}
                     shelves={shelves}
-                    title={book.title}
+                    onChangeShelve={onChangeShelve}
                   />
                 </li>
               );

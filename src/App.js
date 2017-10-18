@@ -2,6 +2,7 @@ import "./App.css";
 
 import * as BooksAPI from "./BooksAPI";
 
+import Book from "./component/Book";
 import BookGrid from "./component/BookGrid";
 import React from "react";
 
@@ -15,12 +16,21 @@ class BooksApp extends React.Component {
     ],
     showSearchPage: false
   };
+
   componentDidMount = () => {
     BooksAPI.getAll().then(books => this.setState({ books }));
   };
 
+  updateShelve = (book, newShelve) => {
+    const {books} = this.state;
+    book.shelf = newShelve;
+    this.setState({books});
+   
+  };
+
   render() {
     const { shelves, books } = this.state;
+    const updateShelve = this.updateShelve;
     return (
       <div className="app">
         <div className="list-books">
@@ -37,6 +47,7 @@ class BooksApp extends React.Component {
                     title={shelf.title}
                     books={books}
                     shelves={shelves}
+                    onChangeShelve={updateShelve}
                   />
                 );
               })}

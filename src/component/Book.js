@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const Book = ({ title, authors, imageUrl, shelves }) => {
+const Book = ({ book, shelves, onChangeShelve }) => {
   return (
     <div className="book">
       <div className="book-top">
@@ -10,11 +10,11 @@ const Book = ({ title, authors, imageUrl, shelves }) => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${imageUrl})`
+            backgroundImage: `url(${book.imageLinks.smallThumbnail})`
           }}
         />
         <div className="book-shelf-changer">
-          <select>
+          <select onChange={(e) => onChangeShelve(book,e.target.value)}>
             <option value="none" disabled>
               Move to...
             </option>
@@ -28,13 +28,13 @@ const Book = ({ title, authors, imageUrl, shelves }) => {
           </select>
         </div>
       </div>
-      <div className="book-title">{title}</div>
-      <div className="book-authors">{authors}</div>
+      <div className="book-title">{book.title}</div>
+      <div className="book-authors">{book.authors}</div>
     </div>
   );
 };
 Book.propTypes = {
-  title: PropTypes.string.isRequired,
+    book: PropTypes.object.isRequired,
   shelves: PropTypes.array.isRequired
 };
 
