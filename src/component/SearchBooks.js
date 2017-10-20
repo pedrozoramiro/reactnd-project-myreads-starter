@@ -18,6 +18,7 @@ class SearchBooks extends Component {
   render() {
     const { onUpdateShelve ,shelves, books} = this.props;
     const { query } = this.state;
+    const booksNone = books.filter(book => !book.shelf || book.shelf === 'none');
 
     return (
       <div className="search-books">
@@ -36,7 +37,7 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map(function(book) {
+            {booksNone.map(function(book) {
               return (
                 <li key={book.id}>
                   <Book

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 class BookGrid extends Component {
 
-  componentDidMount = () =>  this.props.onLoadAllBooks();
+
 
   render() {
     const { shelves, books ,updateShelve} = this.props;

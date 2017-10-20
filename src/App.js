@@ -1,5 +1,6 @@
 import "./App.css";
 
+import * as ArrayUtils from "./utils/ArrayUtils";
 import * as BooksAPI from "./BooksAPI";
 
 import BookGrid from "./component/BookGrid";
@@ -17,27 +18,31 @@ class BooksApp extends React.Component {
     ]
   };
 
-  updateShelve = (book, newShelve) => {
-    const { books } = this.state;
-    book.shelf = newShelve;
-    this.setState({ books });
-    BooksAPI.update(book,newShelve).then(books => console.log(book));
+  componentDidMount = () => {
+    BooksAPI.getAll().then(books => this.setState({ books }));
   };
 
-  loadAllBooks =()=>{
-    BooksAPI.getAll().then(books => this.setState({ books }));
-  }
+  updateShelve = (book, newShelf) => {
+    const { books } = this.state;
+    BooksAPI.update(book, newShelf)
+    book.shelf= newShelf;
+    this.setState({ books });
+  };
 
   searchBooks = query => {
-    BooksAPI.search(query, 100).then(books => {
-      books = !books || books.error ? [] : books;
+    let {books} = this.state;    
+    BooksAPI.search(query, 100).then(newBooks => {
+      //TODO: cath error
+      newBooks = !newBooks || newBooks.error ? [] : newBooks;
+      books = ArrayUtils.mergeByProperty(books,newBooks,'id');
       this.setState({ books });
     });
   };
+  
+  
 
   render() {
     const { books, shelves } = this.state;
-
     return (
       <div className="app">
         <Route
