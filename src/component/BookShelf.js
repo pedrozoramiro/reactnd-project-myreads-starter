@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-import Book from "./Book";
 import PropTypes from "prop-types";
+
+import Book from "./Book";
 
 class BookShelf extends Component {
   render() {
-    const { books, shelves, shelf, onChangeShelve } = this.props;
+    const { books, shelves, shelf, handleChangeShelf } = this.props;
     const booksFilteredByShelf = books.filter(book => book.shelf === shelf.name);
-
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{shelf.title}</h2>
@@ -19,7 +19,7 @@ class BookShelf extends Component {
                   <Book
                     book={book}
                     shelves={shelves}
-                    onChangeShelve={onChangeShelve}
+                    handleChangeShelf={handleChangeShelf}
                   />
                 </li>
               );
@@ -34,7 +34,8 @@ class BookShelf extends Component {
 BookShelf.propTypes = {
   shelf: PropTypes.object.isRequired,
   shelves: PropTypes.array.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  handleChangeShelf: PropTypes.func.isRequired
 };
 
 export default BookShelf;

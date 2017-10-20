@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import Book from "./Book";
-import { Link } from "react-router-dom";
 
 class SearchBooks extends Component {
   state = {
@@ -16,7 +17,7 @@ class SearchBooks extends Component {
   };
 
   render() {
-    const { onUpdateShelve ,shelves, books} = this.props;
+    const { handleChangeShelf ,shelves, books} = this.props;
     const { query } = this.state;
     const booksNone = books.filter(book => !book.shelf || book.shelf === 'none');
 
@@ -43,7 +44,7 @@ class SearchBooks extends Component {
                   <Book
                     book={book}
                     shelves={shelves}
-                    onChangeShelve={onUpdateShelve}
+                    handleChangeShelf={handleChangeShelf}
                   />
                 </li>
               );
@@ -54,4 +55,12 @@ class SearchBooks extends Component {
     );
   }
 }
+
+SearchBooks.propTypes = {
+  shelves: PropTypes.array.isRequired,
+  books: PropTypes.array.isRequired,
+  handleChangeShelf: PropTypes.func.isRequired
+};
+
+
 export default SearchBooks;

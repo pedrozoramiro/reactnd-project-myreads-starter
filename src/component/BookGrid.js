@@ -1,43 +1,43 @@
-import React, { Component } from "react";
-
-import BookShelf from "./BookShelf";
+import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-class BookGrid extends Component {
+import BookShelf from "./BookShelf";
 
-
-
-  render() {
-    const { shelves, books ,updateShelve} = this.props;
-    return (
-      <div className="app">
-        <div className="list-books">
-          <div className="list-books-title">
-            <h1>MyReads</h1>
-          </div>
-          <div className="list-books-content">
-            <div>
-              {shelves.map(function(shelf) {
-                return (
-                  <BookShelf
-                    key={shelf.name}
-                    shelf={shelf}
-                    books={books}
-                    shelves={shelves}
-                    onChangeShelve={updateShelve}
-                  />
-                );
-              })}
-            </div>
-          </div>
-          <div className="open-search">
-            <Link to="/search">Add a book</Link>
-          </div>
-        </div>
-        }
+const BookGrid = ({ shelves, books, handleChangeShelf }) => (
+  <div className="app">
+    <div className="list-books">
+      <div className="list-books-title">
+        <h1>MyReads</h1>
       </div>
-    );
-  }
-}
+      <div className="list-books-content">
+        <div>
+          {shelves.map(function(shelf) {
+            return (
+              <BookShelf
+                key={shelf.name}
+                shelf={shelf}
+                books={books}
+                shelves={shelves}
+                handleChangeShelf={handleChangeShelf}
+              />
+            );
+          })}
+        </div>
+      </div>
+      <div className="open-search">
+        <Link to="/search">Add a book</Link>
+      </div>
+    </div>
+    }
+  </div>
+);
+
+BookGrid.propTypes = {
+  books: PropTypes.array.isRequired,
+  shelves: PropTypes.array.isRequired,
+  handleChangeShelf: PropTypes.func.isRequired
+};
+
 
 export default BookGrid;

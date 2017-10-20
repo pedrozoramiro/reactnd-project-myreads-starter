@@ -1,12 +1,11 @@
-import "./App.css";
-
-import * as ArrayUtils from "./utils/ArrayUtils";
-import * as BooksAPI from "./BooksAPI";
-
-import BookGrid from "./component/BookGrid";
 import React from "react";
 import { Route } from "react-router-dom";
+
+import BookGrid from "./component/BookGrid";
 import SearchBooks from "./component/SearchBooks";
+import * as ArrayUtils from "./utils/ArrayUtils";
+import * as BooksAPI from "./utils/BooksAPI";
+import "./App.css";
 
 class BooksApp extends React.Component {
   state = {
@@ -52,7 +51,7 @@ class BooksApp extends React.Component {
             <BookGrid
               books={books}
               shelves={shelves}
-              updateShelve={this.updateShelve}
+              handleChangeShelf={this.updateShelve}
               onLoadAllBooks={this.loadAllBooks}
             />
           )}
@@ -65,7 +64,7 @@ class BooksApp extends React.Component {
               books={books}
               shelves={shelves}
               onSearchBook={this.searchBooks}
-              onUpdateShelve={this.updateShelve}
+              handleChangeShelf={this.updateShelve}
             />
           )}
         />
