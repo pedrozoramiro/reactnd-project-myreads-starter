@@ -12,8 +12,7 @@ class BookShelf extends Component {
       { name: "currentlyReading", title: "Currently Reading" },
       { name: "wantToRead", title: "Want to Read" },
       { name: "read", title: "Read" }
-    ],
-    showSearchPage: false
+    ]
   };
 
   componentDidMount = () => {
