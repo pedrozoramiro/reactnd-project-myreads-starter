@@ -1,63 +1,42 @@
-import * as BooksAPI from "./../BooksAPI";
-
 import React, { Component } from "react";
 
-import BookGrid from "./BookGrid";
-import { Link } from "react-router-dom";
+import Book from "./Book";
+import PropTypes from "prop-types";
 
 class BookShelf extends Component {
-  state = {
-    books: [],
-    shelves: [
-      { name: "currentlyReading", title: "Currently Reading" },
-      { name: "wantToRead", title: "Want to Read" },
-      { name: "read", title: "Read" }
-    ]
-  };
-
-  componentDidMount = () => {
-    BooksAPI.getAll().then(books => this.setState({ books }));
-  };
-
-  updateShelve = (book, newShelve) => {
-    const { books } = this.state;
-    book.shelf = newShelve;
-    this.setState({ books });
-  };
-
   render() {
-    const { shelves, books } = this.state;
-    const updateShelve = this.updateShelve;
+    const { title, books, shelves, shelf, onChangeShelve } = this.props;
+    //TODO: externalizar essa regra.
+    const booksFilteredByShelf = books.filter(book => book.shelf === shelf);
+
     return (
-      <div className="app">
-        <div className="list-books">
-          <div className="list-books-title">
-            <h1>MyReads</h1>
-          </div>
-          <div className="list-books-content">
-            <div>
-              {shelves.map(function(shelf) {
-                return (
-                  <BookGrid
-                    key={shelf.name}
-                    shelf={shelf.name}
-                    title={shelf.title}
-                    books={books}
+      <div className="bookshelf">
+        <h2 className="bookshelf-title">{title}</h2>
+        <div className="bookshelf-books">
+          <ol className="books-grid">
+            {booksFilteredByShelf.map(function(book) {
+              return (
+                <li key={book.id}>
+                  <Book
+                    book={book}
                     shelves={shelves}
-                    onChangeShelve={updateShelve}
+                    onChangeShelve={onChangeShelve}
                   />
-                );
-              })}
-            </div>
-          </div>
-          <div className="open-search">
-            <Link to="/search">Add a book</Link>
-          </div>
+                </li>
+              );
+            })}
+          </ol>
         </div>
-        }
       </div>
     );
   }
 }
+
+BookShelf.propTypes = {
+  title: PropTypes.string.isRequired,
+  shelf: PropTypes.string.isRequired,
+  shelves: PropTypes.array.isRequired,
+  books: PropTypes.array.isRequired
+};
 
 export default BookShelf;
