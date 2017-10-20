@@ -1,5 +1,3 @@
-import * as BooksAPI from "./../BooksAPI";
-
 import React, { Component } from "react";
 
 import Book from "./Book";
@@ -7,27 +5,19 @@ import { Link } from "react-router-dom";
 
 class SearchBooks extends Component {
   state = {
-    query: "",
-    books: [],
-    shelves: [
-      { name: "currentlyReading", title: "Currently Reading" },
-      { name: "wantToRead", title: "Want to Read" },
-      { name: "read", title: "Read" }
-    ]
+    query: ""
   };
 
   handleChangeSearch = e => {
+    const { onSearchBook } = this.props;
     const query = e.target.value;
     this.setState({ query });
-    BooksAPI.search(query, 100).then(books => {
-      books = !books || books.error ? [] : books;
-      this.setState({ books });
-    });
+    onSearchBook(query);
   };
 
   render() {
-    const { onChangeShelve } = this.props;
-    const { books, shelves, query } = this.state;
+    const { onUpdateShelve ,shelves, books} = this.props;
+    const { query } = this.state;
 
     return (
       <div className="search-books">
@@ -52,7 +42,7 @@ class SearchBooks extends Component {
                   <Book
                     book={book}
                     shelves={shelves}
-                    onChangeShelve={onChangeShelve}
+                    onChangeShelve={onUpdateShelve}
                   />
                 </li>
               );

@@ -5,13 +5,12 @@ import PropTypes from "prop-types";
 
 class BookShelf extends Component {
   render() {
-    const { title, books, shelves, shelf, onChangeShelve } = this.props;
-    //TODO: externalizar essa regra.
-    const booksFilteredByShelf = books.filter(book => book.shelf === shelf);
+    const { books, shelves, shelf, onChangeShelve } = this.props;
+    const booksFilteredByShelf = books.filter(book => book.shelf === shelf.name);
 
     return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{title}</h2>
+        <h2 className="bookshelf-title">{shelf.title}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {booksFilteredByShelf.map(function(book) {
@@ -33,8 +32,7 @@ class BookShelf extends Component {
 }
 
 BookShelf.propTypes = {
-  title: PropTypes.string.isRequired,
-  shelf: PropTypes.string.isRequired,
+  shelf: PropTypes.object.isRequired,
   shelves: PropTypes.array.isRequired,
   books: PropTypes.array.isRequired
 };

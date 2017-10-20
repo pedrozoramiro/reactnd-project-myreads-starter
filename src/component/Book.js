@@ -14,7 +14,9 @@ const Book = ({ book, shelves, onChangeShelve }) => {
           }}
         />
         <div className="book-shelf-changer">
-          <select onChange={(e) => onChangeShelve(book,e.target.value)}>
+          <select
+            value={book.shelf}
+            onChange={e => onChangeShelve(book, e.target.value)}>
             <option value="none" disabled>
               Move to...
             </option>
@@ -25,6 +27,7 @@ const Book = ({ book, shelves, onChangeShelve }) => {
                 </option>
               );
             })}
+            <option value="none">None</option>
           </select>
         </div>
       </div>
@@ -33,8 +36,9 @@ const Book = ({ book, shelves, onChangeShelve }) => {
     </div>
   );
 };
+
 Book.propTypes = {
-    book: PropTypes.object.isRequired,
+  book: PropTypes.object.isRequired,
   shelves: PropTypes.array.isRequired
 };
 

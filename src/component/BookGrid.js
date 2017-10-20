@@ -1,33 +1,14 @@
-import * as BooksAPI from "./../BooksAPI";
-
 import React, { Component } from "react";
 
 import BookShelf from "./BookShelf";
 import { Link } from "react-router-dom";
 
 class BookGrid extends Component {
-  state = {
-    books: [],
-    shelves: [
-      { name: "currentlyReading", title: "Currently Reading" },
-      { name: "wantToRead", title: "Want to Read" },
-      { name: "read", title: "Read" }
-    ]
-  };
 
-  componentDidMount = () => {
-    BooksAPI.getAll().then(books => this.setState({ books }));
-  };
-
-  updateShelve = (book, newShelve) => {
-    const { books } = this.state;
-    book.shelf = newShelve;
-    this.setState({ books });
-  };
+  componentDidMount = () =>  this.props.onLoadAllBooks();
 
   render() {
-    const { shelves, books } = this.state;
-    const updateShelve = this.updateShelve;
+    const { shelves, books ,updateShelve} = this.props;
     return (
       <div className="app">
         <div className="list-books">
@@ -40,8 +21,7 @@ class BookGrid extends Component {
                 return (
                   <BookShelf
                     key={shelf.name}
-                    shelf={shelf.name}
-                    title={shelf.title}
+                    shelf={shelf}
                     books={books}
                     shelves={shelves}
                     onChangeShelve={updateShelve}
