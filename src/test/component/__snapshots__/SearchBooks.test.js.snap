@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="search-books"
+>
+  <div
+    className="search-books-bar"
+  >
+    <Link
+      className="close-search"
+      replace={false}
+      to="/"
+    >
+      Close
+    </Link>
+    <div
+      className="search-books-input-wrapper"
+    >
+      <input
+        onChange={[Function]}
+        placeholder="Search by title or author"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="search-books-results"
+  >
+    <ol
+      className="books-grid"
+    >
+      <li
+        key="1"
+      >
+        <Book
+          book={
+            Object {
+              "authors": Array [
+                "Ramiro Pedrozo",
+              ],
+              "id": "1",
+              "imageLinks": Object {
+                "smallThumbnail": "",
+              },
+              "shelf": "none",
+              "title": "Book [read]",
+            }
+          }
+          handleChangeShelf={[Function]}
+          shelves={
+            Array [
+              Object {
+                "name": "currentlyReading",
+                "title": "Currently Reading",
+              },
+              Object {
+                "name": "wantToRead",
+                "title": "Want to Read",
+              },
+              Object {
+                "name": "read",
+                "title": "Read",
+              },
+            ]
+          }
+        />
+      </li>
+    </ol>
+  </div>
+</div>
+`;

@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="list-books"
+  >
+    <div
+      className="list-books-title"
+    >
+      <h1>
+        MyReads
+      </h1>
+    </div>
+    <div
+      className="list-books-content"
+    >
+      <div>
+        <BookShelf
+          books={
+            Array [
+              Object {
+                "authors": Array [
+                  "Ramiro Pedrozo",
+                ],
+                "imageLinks": Object {
+                  "smallThumbnail": "",
+                },
+                "shelf": "read",
+                "title": "Book",
+              },
+            ]
+          }
+          handleChangeShelf={[Function]}
+          key="currentlyReading"
+          shelf={
+            Object {
+              "name": "currentlyReading",
+              "title": "Currently Reading",
+            }
+          }
+          shelves={
+            Array [
+              Object {
+                "name": "currentlyReading",
+                "title": "Currently Reading",
+              },
+              Object {
+                "name": "wantToRead",
+                "title": "Want to Read",
+              },
+              Object {
+                "name": "read",
+                "title": "Read",
+              },
+            ]
+          }
+        />
+        <BookShelf
+          books={
+            Array [
+              Object {
+                "authors": Array [
+                  "Ramiro Pedrozo",
+                ],
+                "imageLinks": Object {
+                  "smallThumbnail": "",
+                },
+                "shelf": "read",
+                "title": "Book",
+              },
+            ]
+          }
+          handleChangeShelf={[Function]}
+          key="wantToRead"
+          shelf={
+            Object {
+              "name": "wantToRead",
+              "title": "Want to Read",
+            }
+          }
+          shelves={
+            Array [
+              Object {
+                "name": "currentlyReading",
+                "title": "Currently Reading",
+              },
+              Object {
+                "name": "wantToRead",
+                "title": "Want to Read",
+              },
+              Object {
+                "name": "read",
+                "title": "Read",
+              },
+            ]
+          }
+        />
+        <BookShelf
+          books={
+            Array [
+              Object {
+                "authors": Array [
+                  "Ramiro Pedrozo",
+                ],
+                "imageLinks": Object {
+                  "smallThumbnail": "",
+                },
+                "shelf": "read",
+                "title": "Book",
+              },
+            ]
+          }
+          handleChangeShelf={[Function]}
+          key="read"
+          shelf={
+            Object {
+              "name": "read",
+              "title": "Read",
+            }
+          }
+          shelves={
+            Array [
+              Object {
+                "name": "currentlyReading",
+                "title": "Currently Reading",
+              },
+              Object {
+                "name": "wantToRead",
+                "title": "Want to Read",
+              },
+              Object {
+                "name": "read",
+                "title": "Read",
+              },
+            ]
+          }
+        />
+      </div>
+    </div>
+    <div
+      className="open-search"
+    >
+      <Link
+        replace={false}
+        to="/search"
+      >
+        Add a book
+      </Link>
+    </div>
+  </div>
+  }
+</div>
+`;

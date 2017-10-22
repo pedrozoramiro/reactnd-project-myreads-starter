@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="book"
+>
+  <div
+    className="book-top"
+  >
+    <div
+      className="book-cover"
+      style={
+        Object {
+          "backgroundImage": "url()",
+          "height": 193,
+          "width": 128,
+        }
+      }
+    />
+    <div
+      className="book-shelf-changer"
+    >
+      <select
+        onChange={[Function]}
+        value="read"
+      >
+        <option
+          disabled={true}
+          value="none"
+        >
+          Move to...
+        </option>
+        <option
+          key="currentlyReading"
+          value="currentlyReading"
+        >
+          Currently Reading
+        </option>
+        <option
+          key="wantToRead"
+          value="wantToRead"
+        >
+          Want to Read
+        </option>
+        <option
+          key="read"
+          value="read"
+        >
+          Read
+        </option>
+        <option
+          value="none"
+        >
+          None
+        </option>
+      </select>
+    </div>
+  </div>
+  <div
+    className="book-title"
+  >
+    Book
+  </div>
+  <div
+    className="book-authors"
+  >
+    Ramiro Pedrozo
+  </div>
+</div>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should add new item  1`] = `
+Array [
+  Object {
+    "id": "1",
+    "name": "name1",
+  },
+  Object {
+    "id": "2",
+    "name": "name2",
+  },
+  Object {
+    "id": "3",
+    "name": "name3",
+  },
+]
+`;
+
+exports[`Should merge property 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "name": "merged1",
+  },
+  Object {
+    "id": "2",
+    "name": "name2",
+  },
+]
+`;
