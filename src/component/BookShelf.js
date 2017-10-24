@@ -4,10 +4,8 @@ import PropTypes from "prop-types";
 
 import Book from "./Book";
 
-class BookShelf extends Component {
-  render() {
-    const { books, shelves, shelf, handleChangeShelf } = this.props;
-    const booksFilteredByShelf = books.filter(book => book.shelf === shelf.name);
+const BookShelf = ({ books, shelves, shelf, handleChangeShelf  })=>{
+  const booksFilteredByShelf = books.filter(book => book.shelf === shelf.name);
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{shelf.title}</h2>
@@ -29,7 +27,7 @@ class BookShelf extends Component {
       </div>
     );
   }
-}
+
 
 BookShelf.propTypes = {
   shelf: PropTypes.object.isRequired,
