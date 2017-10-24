@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
+import { Debounce } from "react-throttle";
 import Book from "./Book";
 
 class SearchBooks extends Component {
-  state = {
-    query: ""
-  };
 
   handleChangeSearch = e => {
     const { onSearchBook } = this.props;
@@ -17,9 +14,10 @@ class SearchBooks extends Component {
   };
 
   render() {
-    const { handleChangeShelf ,shelves, books} = this.props;
-    const { query } = this.state;
-    const booksNone = books.filter(book => !book.shelf || book.shelf === 'none');
+    const { handleChangeShelf, shelves, books } = this.props;
+    const booksNone = books.filter(
+      book => !book.shelf || book.shelf === "none"
+    );
 
     return (
       <div className="search-books">
@@ -28,12 +26,13 @@ class SearchBooks extends Component {
             Close
           </Link>
           <div className="search-books-input-wrapper">
-            <input
-              type="text"
-              placeholder="Search by title or author"
-              value={query}
-              onChange={this.handleChangeSearch}
-            />
+            <Debounce time="400" handler="onChange">
+              <input
+                type="text"
+                placeholder="Search by title or author"
+                onChange={this.handleChangeSearch}
+              />
+            </Debounce>
           </div>
         </div>
         <div className="search-books-results">
@@ -62,6 +61,5 @@ SearchBooks.propTypes = {
   handleChangeShelf: PropTypes.func.isRequired,
   onSearchBook: PropTypes.func.isRequired
 };
-
 
 export default SearchBooks;
