@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as Const from "../utils/Const";
 
-const Book = ({ book, shelves, handleChangeShelf }) => (
+const Book = ({ book, handleChangeShelf }) => (
   <div className="book">
     <div className="book-top">
       <div
@@ -20,7 +21,7 @@ const Book = ({ book, shelves, handleChangeShelf }) => (
           <option value="none" disabled>
             Move to...
           </option>
-          {shelves.map(function(shelve) {
+          {Const.SHELVES.map(function(shelve) {
             return (
               <option key={shelve.name} value={shelve.name}>
                 {shelve.title}
@@ -38,7 +39,6 @@ const Book = ({ book, shelves, handleChangeShelf }) => (
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  shelves: PropTypes.array.isRequired,
   handleChangeShelf: PropTypes.func.isRequired
 };
 

@@ -14,7 +14,7 @@ class SearchBooks extends Component {
   };
 
   render() {
-    const { handleChangeShelf, shelves, books } = this.props;
+    const { handleChangeShelf, books } = this.props;
     const booksNone = books.filter(
       book => !book.shelf || book.shelf === "none"
     );
@@ -42,7 +42,6 @@ class SearchBooks extends Component {
                 <li key={book.id}>
                   <Book
                     book={book}
-                    shelves={shelves}
                     handleChangeShelf={handleChangeShelf}
                   />
                 </li>
@@ -56,7 +55,6 @@ class SearchBooks extends Component {
 }
 
 SearchBooks.propTypes = {
-  shelves: PropTypes.array.isRequired,
   books: PropTypes.array.isRequired,
   handleChangeShelf: PropTypes.func.isRequired,
   onSearchBook: PropTypes.func.isRequired

@@ -8,14 +8,13 @@ import * as BooksAPI from "./utils/BooksAPI";
 import "./App.css";
 
 class BooksApp extends React.Component {
-  state = {
-    books: [],
-    shelves: [
-      { name: "currentlyReading", title: "Currently Reading" },
-      { name: "wantToRead", title: "Want to Read" },
-      { name: "read", title: "Read" }
-    ]
-  };
+  
+  constructor() {
+    super();
+    this.state = {
+      books: []
+    };
+  }
 
   componentDidMount = () => {
     BooksAPI.getAll().then(books => this.setState({ books }));
@@ -23,22 +22,20 @@ class BooksApp extends React.Component {
 
   updateShelve = (book, newShelf) => {
     const { books } = this.state;
-    BooksAPI.update(book, newShelf)
-    book.shelf= newShelf;
+    BooksAPI.update(book, newShelf);
+    book.shelf = newShelf;
     this.setState({ books });
   };
 
   searchBooks = query => {
-    let {books} = this.state;    
+    let { books } = this.state;
     BooksAPI.search(query, 100).then(newBooks => {
       //TODO: cath error
       newBooks = !newBooks || newBooks.error ? [] : newBooks;
-      books = ArrayUtils.mergeByProperty(books,newBooks,'id');
+      books = ArrayUtils.mergeByProperty(books, newBooks, "id");
       this.setState({ books });
     });
   };
-  
-  
 
   render() {
     const { books, shelves } = this.state;
@@ -50,7 +47,6 @@ class BooksApp extends React.Component {
           render={() => (
             <BookGrid
               books={books}
-              shelves={shelves}
               handleChangeShelf={this.updateShelve}
               onLoadAllBooks={this.loadAllBooks}
             />
@@ -62,7 +58,6 @@ class BooksApp extends React.Component {
           render={() => (
             <SearchBooks
               books={books}
-              shelves={shelves}
               onSearchBook={this.searchBooks}
               handleChangeShelf={this.updateShelve}
             />
