@@ -22,9 +22,13 @@ class BooksApp extends React.Component {
 
   updateShelve = (book, newShelf) => {
     const { books } = this.state;
-    BooksAPI.update(book, newShelf);
-    book.shelf = newShelf;
-    this.setState({ books });
+    BooksAPI.update(book, newShelf).then(response => {
+      if (response.error) {
+        return;//TODO:mostrar erro com componente de toast
+      }
+      book.shelf = newShelf;
+      this.setState({ books });
+    });
   };
 
   searchBooks = query => {
