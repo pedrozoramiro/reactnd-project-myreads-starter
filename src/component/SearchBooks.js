@@ -14,10 +14,7 @@ class SearchBooks extends Component {
   };
 
   render() {
-    const { handleChangeShelf, books } = this.props;
-    const booksNone = books.filter(
-      book => !book.shelf || book.shelf === "none"
-    );
+    const { handleChangeShelf, booksResultSearch } = this.props;
 
     return (
       <div className="search-books">
@@ -37,7 +34,7 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {booksNone.map(function(book) {
+            {booksResultSearch.map(function(book) {
               return (
                 <li key={book.id}>
                   <Book
@@ -55,7 +52,7 @@ class SearchBooks extends Component {
 }
 
 SearchBooks.propTypes = {
-  books: PropTypes.array.isRequired,
+  booksResultSearch: PropTypes.array.isRequired,
   handleChangeShelf: PropTypes.func.isRequired,
   onSearchBook: PropTypes.func.isRequired
 };

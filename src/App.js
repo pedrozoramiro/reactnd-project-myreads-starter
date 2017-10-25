@@ -8,11 +8,11 @@ import * as BooksAPI from "./utils/BooksAPI";
 import "./App.css";
 
 class BooksApp extends React.Component {
-  
   constructor() {
     super();
     this.state = {
-      books: []
+      books: [],
+      booksResultSearch: []
     };
   }
 
@@ -24,25 +24,32 @@ class BooksApp extends React.Component {
     const { books } = this.state;
     BooksAPI.update(book, newShelf).then(response => {
       if (response.error) {
-        return;//TODO:mostrar erro com componente de toast
+        return; //TODO:mostrar erro com componente de toast
       }
       book.shelf = newShelf;
+      const indexBook = books.findIndex(bookResult => bookResult.id === book.id);
+      books.splice(indexBook, 1);
+      books.push(book);
       this.setState({ books });
     });
   };
 
   searchBooks = query => {
-    let { books } = this.state;
+    let { booksResultSearch, books } = this.state;
     BooksAPI.search(query, 100).then(newBooks => {
-      //TODO: cath error
-      newBooks = !newBooks || newBooks.error ? [] : newBooks;
-      books = ArrayUtils.mergeByProperty(books, newBooks, "id");
-      this.setState({ books });
+      booksResultSearch = !newBooks || newBooks.error ? [] : newBooks;
+      if (booksResultSearch && Array.isArray(booksResultSearch)) {
+        booksResultSearch = booksResultSearch.map(bookResult => {
+          return books.find(book => book.id === bookResult.id) || bookResult;
+        });
+      }
+      this.setState({ booksResultSearch });
     });
   };
 
+
   render() {
-    const { books, shelves } = this.state;
+    const { booksResultSearch, books, shelves } = this.state;
     return (
       <div className="app">
         <Route
@@ -61,7 +68,7 @@ class BooksApp extends React.Component {
           path="/search"
           render={() => (
             <SearchBooks
-              books={books}
+              booksResultSearch={booksResultSearch}
               onSearchBook={this.searchBooks}
               handleChangeShelf={this.updateShelve}
             />
