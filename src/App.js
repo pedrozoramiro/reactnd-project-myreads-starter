@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 
 import BookGrid from "./component/BookGrid";
 import SearchBooks from "./component/SearchBooks";
-import * as ArrayUtils from "./utils/ArrayUtils";
 import * as BooksAPI from "./utils/BooksAPI";
 import "./App.css";
 
@@ -28,7 +27,9 @@ class BooksApp extends React.Component {
       }
       book.shelf = newShelf;
       const indexBook = books.findIndex(bookResult => bookResult.id === book.id);
-      books.splice(indexBook, 1);
+      if(indexBook !== -1){
+        books.splice(indexBook, 1);
+      }
       books.push(book);
       this.setState({ books });
     });
